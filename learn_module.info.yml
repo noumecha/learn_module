@@ -1,0 +1,5 @@
+name: learn_module
+description: custom module for learning purpose
+type: module
+core_version_requirement: ^8 || ^9 || ^10
+package: Custom
