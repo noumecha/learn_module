@@ -3,3 +3,7 @@ description: custom module for learning purpose
 type: module
 core_version_requirement: ^8 || ^9 || ^10
 package: Custom
+dependencies: 
+  - drupal:views
+  - ctools:ctools
+configure: learn_module.configuration_route_name
