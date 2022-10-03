@@ -20,7 +20,7 @@ class LearnModuleController extends ControllerBase
     public function learnModule() 
     {
         return [
-            '#markup' => $this->t('hello guys'),
+            '#markup' => $this->t('<h3>hello guys<h3>'),
         ];
     }
 }
