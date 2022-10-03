@@ -1,10 +1,17 @@
 <?php
 
+/**
+ * @file 
+ * learn module file.(for respecting dru coding conventions)
+ */
+
 // namespaces
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Implements hook_helps().
+ * is not a custom hook, that is just for extend help() hook
+ * to make particular for our module
  */
 function learn_module_help($route_name, RouteMatchInterface $route_match) 
 {
@@ -13,7 +20,7 @@ function learn_module_help($route_name, RouteMatchInterface $route_match)
  		case 'help.page.learn_module':
  			$output = '';
  			$output .= '<h3>' . t('About') .'</h3>';
- 			$output .= '<p>' . t('This is an example module created by spaker.') . '</p>';
+ 			$output .= '<p>' . t('This is an example module created by spaker [learning purpose].') . '</p>';
  			return $output;
  		default;
 	}
