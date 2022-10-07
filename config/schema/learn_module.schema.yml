@@ -1,0 +1,7 @@
+field.field_settings.[test_field]:
+  type: mapping
+  label: 'test_field settings'
+  mapping:
+    size:
+      type: string
+      label: 'Size'
