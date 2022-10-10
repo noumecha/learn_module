@@ -13,6 +13,7 @@ use Drupal\Core\TypedData\DataDefinition;
  * 
  * @FieldType(
  *   id = "test_field",
+ *   description = @Translation("Simple test field type"),
  *   label = @Translation("Test Field"),
  *   default_formatter = "test_field_formatter",
  *   default_widget = "test_field_widget",
@@ -38,6 +39,7 @@ class TestField extends FieldItemBase {
                 'icon-f' => [
                     'value' => ' fab fa-twitter ',
                     'link' => '#',
+                    'size' => 'tiny',
                     'text' => ' Twitter ',
                     'label' => ' Icon twitter ',
                     'show_text' => FALSE,
@@ -52,8 +54,8 @@ class TestField extends FieldItemBase {
     */
     public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
         $properties = [];
-        $properties['value'] = DataDefinition::create('string');
-        $properties['icon-f'] = DataDefinition::create('string');
+        $properties['value'] = DataDefinition::create('string')->setLabel(t('Value value'));
+        $properties['icon-f'] = DataDefinition::create('string')->setLabel(t('Icon-f value'));
     
         return $properties;
     }
