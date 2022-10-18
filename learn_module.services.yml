@@ -1,0 +1,5 @@
+services:
+  learn_module.salutation:
+    class: Drupal\learn_module\LearnModuleFirstService
+    tags:
+      - {name: tag_name}
