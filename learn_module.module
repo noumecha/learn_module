@@ -19,7 +19,7 @@ function learn_module_help($route_name, RouteMatchInterface $route_match)
 	{
  		case 'help.page.learn_module':
  			$output = '';
- 			$output .= '<h3>' . t('About') .'</h3>';
+ 			$output .= '<h3>' . t('About learn module') .'</h3>';
  			$output .= '<p>' . t('This is an example module created by spaker [learning purpose].') . '</p>';
  			return $output;
  		default;

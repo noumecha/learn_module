@@ -5,3 +5,10 @@ learn_module.hello:
     _title: 'My first Drupal Route'
   requirements:
     _permission: 'access content'
+learn_module.greeting_message:
+  path: '/salutation'
+  defaults:
+    _form: Drupal\learn_module\Form\SalutationConfigurationForm
+    _title: 'Greating message Route'
+  requirements:
+    _permission: 'administer site configuration'
