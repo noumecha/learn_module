@@ -1,9 +1,3 @@
-entity.product.collection:
-  title: 'Product list'
-  route_name: entity.product.collection
-  description: 'List Product entities'
-  parent: system.admin_structure
-  weight: 100
 entity.product.canonical:
   route_name: entity.product.canonical
   base_route: entity.product.canonical

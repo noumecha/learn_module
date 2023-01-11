@@ -2,16 +2,13 @@
 
 namespace Drupal\learn_module\Entity;
 
-use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
-
-use EntityChangedTrait;
 
 /**
  * Represents a Product entity.
  */
-interface ProductInterface extends ContentEntityInterface, EntityChangedInterface 
+interface ProductInterface extends ContentEntityInterface /*, EntityChangedInterface*/
 {
     /**
      * Gets the Product name

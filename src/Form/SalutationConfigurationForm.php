@@ -27,7 +27,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
     }
     /**
      * {@inheritdoc}
-     * this function is for building the form dield
+     * this function is for building the form field
      */
     public function buildForm(array $form, FormStateInterface $form_state)
     {

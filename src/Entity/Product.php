@@ -3,9 +3,9 @@
 namespace Drupal\learn_module\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
-use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use EntityChangedTrait;
 
 /**
  * 
@@ -48,7 +48,75 @@ use Drupal\Core\Field\BaseFieldDefinition;
  */
 
 class Product extends ContentEntityBase implements ProductInterface {
+    /**
+     * definitions of the fields of the Entity
+     */
+    public static function baseFieldDefinitions(EntityTypeInterface $entity_type)
+    {
+        $fields = parent::baseFieldDefinitions($entity_type);   
+        
+        $fields["name"] = BaseFieldDefinition::create('string')
+        ->setLabel(t('Product Name'))
+        ->setDescription(t('the name of the product'))
+        ->setSettings([
+            'max_length' => 255,
+            'text_processing' => 0,
+        ])
+        ->setDefaultValue('')
+        ->setDisplayOptions('view', [
+            'label' => 'hidden',
+            'type' => 'string',
+            'weight' => '-4',
+        ])
+        ->setDisplayOptions('form', [
+            'type' => 'string_textfield',
+            'weight' => '-4',
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayConfigurable('view', TRUE);
 
+        $fields['number'] = BaseFieldDefinition::create('integer')
+            ->setLabel(t('Number'))
+            ->setDescription(t('The product number'))
+            ->setSettings(
+                [
+                    'min' => 1,
+                    'max' => 10000
+                ]
+            )
+            ->setDefaultValue(NULL)
+            ->setDisplayOptions('view', [
+                'label' => 'above',
+                'type' => 'number_unformatted',
+                'weight' => -4,
+            ])
+            ->setDisplayConfigurable('form', TRUE)
+            ->setDisplayConfigurable('form', TRUE);
+        $fields['remote_id'] = BaseFieldDefinition::create('string')
+            ->setLabel(t('Remote ID'))
+            ->setDescription(t('The product remote id'))
+            ->setSettings([
+                'max_length' => 255,
+                'text_processing' => 0,
+            ])
+            ->setDefaultValue('');
+        $fields['source'] = BaseFieldDefinition::create('string')
+            ->setLabel(t('Source'))
+            ->setDescription(t('The source of the product'))
+            ->setSettings([
+                'max_length' => 255,
+                'text_processing' => 0,
+            ])
+            ->setDefaultValue('');
+        $fields['created'] = BaseFieldDefinition::create('created')
+            ->setLabel(t('Created'))
+            ->setDescription(t('The time that the entity was created'));
+        $fields['changed'] = BaseFieldDefinition::create('changed')
+            ->setLabel(t('Changed'))
+            ->setDescription(t('The time that the entity was last edited'));
+
+        return $fields;
+    }
     /**
      * @inheritdoc
      * 
@@ -124,75 +192,6 @@ class Product extends ContentEntityBase implements ProductInterface {
     public function setCreatedTime($timestamp) {
         $this->set('created', $timestamp);
         return $this;
-    }
-    /**
-     * definitions of the fields of the Entity
-     */
-    public static function baseFieldDefinitions(EntityTypeInterface $entity_type)
-    {
-        $fields = parent::baseFieldDefinitions($entity_type);   
-        
-        $fields["name"] = BaseFieldDefinition::create('string')
-        ->setLabel(t('Product Name'))
-        ->setDescription(t('the name of the product'))
-        ->setSettings([
-            'max_length' => 255,
-            'text_processing' => 0,
-        ])
-        ->setDefaultValue('')
-        ->setDisplayOptions('view', [
-            'label' => 'hidden',
-            'type' => 'string',
-            'weight' => '-4',
-        ])
-        ->setDisplayOptions('form', [
-            'type' => 'string_textfield',
-            'weight' => '-4',
-        ])
-        ->setDisplayConfigurable('form', TRUE)
-        ->setDisplayConfigurable('view', TRUE);
-
-        $fields['number'] = BaseFieldDefinition::create('integer')
-            ->setLabel(t('Number'))
-            ->setDescription(t('The product number'))
-            ->setSettings(
-                [
-                    'min' => 1,
-                    'max' => 10000
-                ]
-            )
-            ->setDefaultValue(NULL)
-            ->setDisplayOptions('view', [
-                'label' => 'above',
-                'type' => 'number_unformatted',
-                'weight' => -4,
-            ])
-            ->setDisplayConfigurable('form', TRUE)
-            ->setDisplayConfigurable('form', TRUE);
-        $fields['remote_id'] = BaseFieldDefinition::create('string')
-            ->setLabel(t('Remote ID'))
-            ->setDescription(t('The product remote id'))
-            ->setSettings([
-                'max_length' => 255,
-                'text_processing' => 0,
-            ])
-            ->setDefaultValue('');
-        $fields['source'] = BaseFieldDefinition::create('string')
-            ->setLabel(t('Source'))
-            ->setDescription(t('The source of the product'))
-            ->setSettings([
-                'max_length' => 255,
-                'text_processing' => 0,
-            ])
-            ->setDefaultValue('');
-        $fields['created'] = BaseFieldDefinition::create('created')
-            ->setLabel(t('Created'))
-            ->setDescription(t('The time that the entity was created'));
-        $fields['changed'] = BaseFieldDefinition::create('changed')
-            ->setLabel(t('Changed'))
-            ->setDescription(t('The time that the entity was last edited'));
-
-        return $fields;
     }
 
 }

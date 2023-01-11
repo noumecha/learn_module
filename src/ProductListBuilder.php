@@ -4,7 +4,7 @@ namespace Drupal\learn_module;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\link;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 
 /**
@@ -21,7 +21,7 @@ class ProductEntityListBuilder extends EntityListBuilder {
     public function buildHeader()
     {
         $header['id'] = $this->t('Product ID');
-        $header['name'] = $this->t('Product Name');
+        $header['name'] = $this->t('Name');
         return $header + parent::buildHeader();
     }
 

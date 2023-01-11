@@ -3,7 +3,7 @@
 namespace Drupal\learn_module\Form;
 
 use Drupal\Core\Entity\ContentEntityForm;
-use Drupla\Core\Form\FormStateInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * This for is use for Create Edit Entity product
@@ -31,7 +31,7 @@ class ProductForm extends ContentEntityForm {
                     '%label' => $entity->label(),
                 ]));
         }
-        $form_state->setRebuildInfo('entity.product.canonical',['product' => $entity->id()]);
+        $form_state->setRedirect('entity.product.canonical',['product' => $entity->id()]);
         
     }
 
