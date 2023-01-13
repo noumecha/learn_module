@@ -1,0 +1,7 @@
+--- this file is for describe the every small project that we going to create why learning ---
+
+-- with entity-type 
+  - Create a learning entity that takes 
+    + learning_start_date
+    + list_of_learning
+    + 
