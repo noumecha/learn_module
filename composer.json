@@ -1,0 +1,14 @@
+{
+    "name": "noumecha/learn_module",
+    "description": "\"Learning Drupal Modularization\"",
+    "type": "drupal-custom-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "noumecha spaker",
+            "email": "noumechaivan@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
