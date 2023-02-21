@@ -30,6 +30,7 @@ class LearnModuleController extends ControllerBase
     }
     /**
      * {@inheritdoc}
+     * get the service via the create() method
      */
     public static function create(ContainerInterface $container) {
         return new static(

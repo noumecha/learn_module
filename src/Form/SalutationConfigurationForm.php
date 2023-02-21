@@ -34,7 +34,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
         $config = $this->config('hello_world.custom_salutation');
         $form['salutation'] = array(
             '#type' => 'textfield',
-            '#description' => $this->t('provide the salutation greating!'),
+            '#description' => $this->t('Entrez le message de salutation ! (20carractères max)'),
             '#title' => $this->t('Salutation'),
             '#default_value' => $config->get('salutation'),
         );
@@ -45,6 +45,8 @@ class SalutationConfigurationForm extends ConfigFormBase {
     /**
      * {@inheritdoc}
      * this is for sumbittins the form after be fill
+     * his work is to get the value in the field
+     * save it & show successfull message to the user
      */
     public function submitForm(array &$form, FormStateInterface $form_state) {
         $this->config('hello_world.custom_salutation')
@@ -61,7 +63,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
     {
         $salutation = $form_state->getValue('salutation');
         if (strlen($salutation) > 20) {
-            $form_state->setErrorByName('salutation', $this->t('This salutation is too long'));
+            $form_state->setErrorByName('salutation', $this->t('Le message de salutation est trop long !'));
         }
     }
 }

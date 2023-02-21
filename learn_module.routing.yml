@@ -6,7 +6,7 @@ learn_module.hello:
   requirements:
     _permission: 'access content'
 learn_module.greeting_message:
-  path: '/salutation'
+  path: '/admin/config/salutation-configuration'
   defaults:
     _form: Drupal\learn_module\Form\SalutationConfigurationForm
     _title: 'Save your greating message'
