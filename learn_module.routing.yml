@@ -9,6 +9,6 @@ learn_module.greeting_message:
   path: '/salutation'
   defaults:
     _form: Drupal\learn_module\Form\SalutationConfigurationForm
-    _title: 'Greating message Route'
+    _title: 'Save your greating message'
   requirements:
     _permission: 'administer site configuration'

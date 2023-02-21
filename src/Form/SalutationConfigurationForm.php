@@ -34,8 +34,8 @@ class SalutationConfigurationForm extends ConfigFormBase {
         $config = $this->config('hello_world.custom_salutation');
         $form['salutation'] = array(
             '#type' => 'textfield',
-            '#description' => $this->t('provide the salutation greating : '),
-            '#tite' => $this->t('Salutation'),
+            '#description' => $this->t('provide the salutation greating!'),
+            '#title' => $this->t('Salutation'),
             '#default_value' => $config->get('salutation'),
         );
 

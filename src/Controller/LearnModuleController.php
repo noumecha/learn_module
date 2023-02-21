@@ -17,6 +17,8 @@ class LearnModuleController extends ControllerBase
      * @var \Drupal\learn_module\LearnModuleFirstService
      */
     protected $firstService;
+    # we can use service by statically method : 
+    # $service = \Drupal::service('module_name.service_name');
 
     /**
      * learnModuleController constructor.
