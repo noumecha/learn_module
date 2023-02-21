@@ -1,5 +1,6 @@
 services:
   learn_module.salutation:
     class: Drupal\learn_module\LearnModuleFirstService
+    arguments: ['@config.factory']
     tags:
       - {name: tag_name}
