@@ -32,28 +32,20 @@ class LearnModuleFirstService
      */
     public function getSalutation() {
         $time = new \DateTime();
-        //$user = \Drupal::currentUser();
         $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-        $config = $this->configFactory->get('learn_module.custom_salutation');
-        $salutation = $config->get('salutation');
-        //dump($this->configFactory->get('learn_module.custom_salutation'));
-        //var_dump($salutation);
-        /*if ($salutation !== '' && $salutation)
-        {
-            //return $salutation;
-            return $this->t('<center> '.$salutation.' dear '.$user->get('name')->value.'</center>');
-        }*/
+        /*$config = $this->configFactory->get('learn_module.custom_salutation');
+        $salutation = $config->get('salutation');*/
         // morning
         if ((int) $time->format('G') >= 00 && (int) $time->format('G') < 12) {
-            return $this->t('<center> Good morning dear '.$salutation.' '.$user->get('name')->value.'</center>');
+            return $this->t('<center> Good morning dear '.$user->get('name')->value.'</center>');
         }
         // afternoon
         if ((int) $time->format('G') > 12 && (int) $time->format('G') < 18) {
-            return $this->t('<center> Good afternoon dear '.$salutation.' '.$user->get('name')->value.'</center>');
+            return $this->t('<center> Good afternoon dear '.$user->get('name')->value.'</center>');
         }
         // evening
         if ((int) $time->format('G') >= 18) {
-            return $this->t('<center> Good evening dear '.$salutation.' '.$user->get('name')->value.'</center>');
+            return $this->t('<center> Good evening dear '.$user->get('name')->value.'</center>');
         }
     }
 }

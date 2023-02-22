@@ -4,3 +4,7 @@ services:
     arguments: ['@config.factory']
     tags:
       - {name: tag_name}
+  learn_module.author:
+    class: Drupal\learn_module\LearnModuleAuthorService
+    tags:
+      - {name: tag_name}
