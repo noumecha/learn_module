@@ -46,7 +46,17 @@ class LearnModuleController extends ControllerBase
     public function learnModule() 
     {
         return [
+            //dump($this->firstService->getSalutation()),
             '#markup' => $this->firstService->getSalutation(),
+        ];
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function test() {
+        $noumel = "hello";
+        return [
+            "#markup" => $noumel
         ];
     }
 }

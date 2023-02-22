@@ -12,3 +12,10 @@ learn_module.greeting_message:
     _title: 'Save your greating message'
   requirements:
     _permission: 'administer site configuration'
+learn_module.test:
+  path: '/test'
+  defaults:
+    _controller: Drupal\learn_module\Controller\LearnModuleController::test
+    _title: 'Just testing the route'
+  requirements:
+    _permission: 'access content'
