@@ -8,3 +8,8 @@ services:
     class: Drupal\learn_module\LearnModuleAuthorService
     tags:
       - {name: tag_name}
+  learn_module.redirect_subscriber:
+    class: Drupal\learn_module\EventSubscriber\LearnModuleRedirectSubscriber
+    arguments: ['@current_user']
+    tags:
+      - {name: event_subscriber}
