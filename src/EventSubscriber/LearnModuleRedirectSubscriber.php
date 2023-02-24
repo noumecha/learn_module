@@ -25,11 +25,14 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
      */
     protected $currentUser;
 
+    /*\Drupal\Core\Routing\CurrentRouteMatch
+
+    protected $currentRouteMatch = \Drupal::routeMatch();//->getRouteName();*/
+
     /**
-     *
-     * @var \Drupal\Core\Routing\CurrentRouteMatch
+     * {@inheritdoc}
      */
-    protected $currentRouteMatch;
+    //public $service = \Drupal::service('current_route_match');
 
     /**
      *
@@ -50,7 +53,7 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
      */
     public static function create(ContainerInterface $container) {
         return new static(
-            $container->get('learn_module.redirect_subscribe')
+            $container->get('learn_module.redirect_subscriber')
         );
     }
 
@@ -73,8 +76,8 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
     public function onRequet(GetResponseEvent $event)
     {
 
-        $route_name = $this->currentRouteMatch->getRouteName();
-        //dump($route_name);
+        /*$route_name = $this->service;//->getRouteName();
+        dump($route_name);
         if ($route_name !== 'learn_module.redirect_subscribe')
         {
             return ;
@@ -84,8 +87,8 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
         {
             $url = Url::fromUri('internal:/redirect');
             $event->setResponse(new LocalRedirectResponse($url->toString()));
-        }
-        /*$request = $event->getRequest();
+        }*/
+        $request = $event->getRequest();
         $path = $request->getPathInfo();
 
         if($path !== '/redirect')
@@ -98,6 +101,6 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
         if(in_array('authenticated', $roles))
         {
             $event->setResponse(new RedirectResponse('/node/1'));
-        }*/
+        }
     }
 }
