@@ -57,7 +57,8 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
         }
 
         $roles = $this->currentUser->getRoles();
-        if(in_array('non_grata', $roles))
+        //dump($roles);
+        if(in_array('authenticated', $roles))
         {
             $event->setResponse(new RedirectResponse('/node/1'));
         }
