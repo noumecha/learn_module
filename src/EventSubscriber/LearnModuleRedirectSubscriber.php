@@ -19,31 +19,29 @@ use Drupal\Core\Url;
 
 class LearnModuleRedirectSubscriber implements EventSubscriberInterface
 {
+
     /**
-     *
-     * @var \Drupal\Core\Session\AccountProxyInterface
+     * @var \Drupal\Core\Routing\CurrentRouteMatch $currentRouteMatch
+    */
+    protected $currentRouteMatch;
+
+    /**
+     * @var \Drupal\Core\Session\AccountProxyInterface $currentUser
      */
+
     protected $currentUser;
-
-    /*\Drupal\Core\Routing\CurrentRouteMatch
-
-    protected $currentRouteMatch = \Drupal::routeMatch();//->getRouteName();*/
-
-    /**
-     * {@inheritdoc}
-     */
-    //public $service = \Drupal::service('current_route_match');
 
     /**
      *
      * LearnModuleRedirectSubscriber constructor.
      *
+     * @param \Drupal\Core\Routing\CurrentRouteMatch $current_route_match
      * @param \Drupal\Core\Session\AccountProxyInterface $currentUser
      */
 
-    public function __construct(AccountProxyInterface $currentUser)
+    public function __construct(AccountProxyInterface $currentUser,CurrentRouteMatch $current_route_match)
     {
-        //$this->currentRouteMatch = $currentRouteMatch;
+        $this->currentRouteMatch = $current_route_match;
         $this->currentUser = $currentUser;
     }
 
@@ -52,8 +50,10 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
      * get the service via the create() method
      */
     public static function create(ContainerInterface $container) {
+        //$current_route_match = $container->get('current_route_match');
         return new static(
-            $container->get('learn_module.redirect_subscriber')
+            $container->get('learn_module.redirect_subscriber')#,
+            //$current_route_match
         );
     }
 
@@ -76,8 +76,8 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
     public function onRequet(GetResponseEvent $event)
     {
 
-        /*$route_name = $this->service;//->getRouteName();
-        dump($route_name);
+        $route_name = $this->currentRouteMatch->getRouteName();
+        //var_dump($route_name);
         if ($route_name !== 'learn_module.redirect_subscribe')
         {
             return ;
@@ -85,10 +85,10 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
         $roles = $this->currentUser->getRoles();
         if(in_array('authenticated', $roles))
         {
-            $url = Url::fromUri('internal:/redirect');
+            $url = Url::fromUri('internal:/');
             $event->setResponse(new LocalRedirectResponse($url->toString()));
-        }*/
-        $request = $event->getRequest();
+        }
+        /*$request = $event->getRequest();
         $path = $request->getPathInfo();
 
         if($path !== '/redirect')
@@ -101,6 +101,6 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
         if(in_array('authenticated', $roles))
         {
             $event->setResponse(new RedirectResponse('/node/1'));
-        }
+        }*/
     }
 }

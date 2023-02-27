@@ -10,6 +10,6 @@ services:
       - {name: tag_name}
   learn_module.redirect_subscriber:
     class: Drupal\learn_module\EventSubscriber\LearnModuleRedirectSubscriber
-    arguments: ['@current_user']
+    arguments: ['@current_user', '@current_route_match']
     tags:
       - {name: event_subscriber}
