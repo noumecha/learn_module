@@ -1,6 +1,6 @@
 learn_module.hello:
   path: '/learn_module'
-  defaults: 
+  defaults:
     _controller: Drupal\learn_module\Controller\LearnModuleController::learnModule
     _title: 'My first Drupal Route'
   requirements:

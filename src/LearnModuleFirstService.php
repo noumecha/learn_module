@@ -1,14 +1,15 @@
-<?php 
+<?php
 
 namespace Drupal\learn_module;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Prepares the salutation to the world with service.
  */
-class LearnModuleFirstService 
+class LearnModuleFirstService
 {
     use StringTranslationTrait;
     /**
@@ -17,25 +18,48 @@ class LearnModuleFirstService
     protected $configFactory;
 
     /**
-     * LearnModuleFirstService constructor
-     * 
-     * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+     * @var \Sympfony\Component\EventDispatcher\EventDispatcherInterface
      */
 
-    public function __construct(ConfigFactoryInterface $config_factory)
+    protected $eventDispatcher;
+
+    /**
+     * LearnModuleFirstService constructor
+     *
+     * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
+     */
+
+    public function __construct(ConfigFactoryInterface $config_factory, EventDispatcherInterface $eventDispatcher)
     {
         $this->configFactory = $config_factory;
+        $this->eventDispatcher = $eventDispatcher;
     }
-    
+
     /**
      * Returns the salutation
      */
     public function getSalutation() {
         $time = new \DateTime();
         $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-        /*$config = $this->configFactory->get('learn_module.custom_salutation');
-        $salutation = $config->get('salutation');*/
-        // morning
+        $config = $this->configFactory->get('learn_module.custom_salutation');
+        $salutation = $config->get('salutation');
+        dump($config->get('salutation'));
+        if ($salutation !== " " && $salutation )
+        {
+            if ((int) $time->format('G') >= 00 && (int) $time->format('G') < 12) {
+                return $this->t('<center> '.$salutation.' dear '.$user->get('name')->value.' we are at morning </center>');
+            }
+            // afternoon
+            if ((int) $time->format('G') > 12 && (int) $time->format('G') < 18) {
+                return $this->t('<center> '.$salutation.' dear '.$user->get('name')->value.' we are at afternoon </center>');
+            }
+            // evening
+            if ((int) $time->format('G') >= 18) {
+                return $this->t('<center> '.$salutation.' dear '.$user->get('name')->value.' we are at evening </center>');
+            }
+        }
+        /*/ morning
         if ((int) $time->format('G') >= 00 && (int) $time->format('G') < 12) {
             return $this->t('<center> Good morning dear '.$user->get('name')->value.'</center>');
         }
@@ -46,6 +70,6 @@ class LearnModuleFirstService
         // evening
         if ((int) $time->format('G') >= 18) {
             return $this->t('<center> Good evening dear '.$user->get('name')->value.'</center>');
-        }
+        }*/
     }
 }
