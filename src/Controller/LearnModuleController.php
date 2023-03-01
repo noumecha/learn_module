@@ -1,6 +1,6 @@
 <?php
 
-// defining the namespaces 
+// defining the namespaces
 namespace Drupal\learn_module\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
@@ -17,13 +17,13 @@ class LearnModuleController extends ControllerBase
      * @var \Drupal\learn_module\LearnModuleFirstService
      */
     protected $firstService;
-    
-    # we can use service by statically method : 
+
+    # we can use service by statically method :
     # $service = \Drupal::service('module_name.service_name');
 
     /**
      * learnModuleController constructor.
-     * 
+     *
      * @param \Drupal\learn_module\LearnModuleFirstService $firstService
      */
     public function __construct(LearnModuleFirstService $firstService) {
@@ -40,14 +40,13 @@ class LearnModuleController extends ControllerBase
     }
     /**
      * hello guys.
-     * 
+     *
      * @return array
      *   My custom message for controller
      */
-    public function learnModule() 
+    public function learnModule()
     {
         return [
-            //dump($this->firstService->getSalutation()),
             '#markup' => $this->firstService->getSalutation(),
         ];
     }
