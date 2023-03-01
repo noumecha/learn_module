@@ -78,7 +78,7 @@ class LearnModuleRedirectSubscriber implements EventSubscriberInterface
 
         $route_name = $this->currentRouteMatch->getRouteName();
         //var_dump($route_name);
-        if ($route_name !== 'learn_module.redirect_subscribe')
+        if ($route_name !== 'learn_module.redirect_subscriber')
         {
             return ;
         }
