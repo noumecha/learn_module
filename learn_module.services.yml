@@ -3,13 +3,20 @@ services:
     class: Drupal\learn_module\LearnModuleFirstService
     arguments: ['@config.factory', '@event_dispatcher']
     tags:
-      - {name: tag_name}
+      - { name: tag_name }
   learn_module.author:
     class: Drupal\learn_module\LearnModuleAuthorService
     tags:
-      - {name: tag_name}
+      - { name: tag_name }
   learn_module.redirect_subscriber:
     class: Drupal\learn_module\EventSubscriber\LearnModuleRedirectSubscriber
     arguments: ['@current_user', '@current_route_match']
     tags:
-      - {name: event_subscriber}
+      - { name: event_subscriber }
+  learn_module.logger.channel.learn_module:
+    parent: logger.channel_base
+    arguments: ['learn_module']
+  learn_module.logger.mail_logger:
+    class: Drupal\learn_module\Logger\MailLogger
+    tags:
+      - { name: logger }
