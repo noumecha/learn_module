@@ -44,7 +44,7 @@ class LearnModuleFirstService
         $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
         $config = $this->configFactory->get('learn_module.settings');
         $salutation = $config->get('salutation');
-        dump($config);
+        //dump($config);
         if ($salutation !== " " && $salutation )
         {
             if ((int) $time->format('G') >= 00 && (int) $time->format('G') < 12) {
