@@ -5,6 +5,7 @@ namespace Drupal\learn_module\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\learn_module\LearnModuleFirstService;
+use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -54,9 +55,16 @@ class LearnModuleController extends ControllerBase
      * {@inheritdoc}
      */
     public function test() {
-        $noumel = "hello";
+        dump($user);
+        $t = "hello, dear user ";
         return [
-            "#markup" => $noumel
+            "#markup" => "<h2>".$t."</h2>"
         ];
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function test_one(AccountInterface $user) {
+        dump($user);
     }
 }

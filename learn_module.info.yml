@@ -6,4 +6,5 @@ package: Custom
 dependencies:
   - drupal:views
   - ctools:ctools
+# this line below is for config forms of the module
 configure: learn_module.greeting_message
