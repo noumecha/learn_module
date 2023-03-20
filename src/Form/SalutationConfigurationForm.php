@@ -32,7 +32,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
     public function buildForm(array $form, FormStateInterface $form_state)
     {
         $config = $this->config('learn_module.settings');
-        //dump($config);
+        dump($config);
         $form['salutation'] = array(
             '#type' => 'textfield',
             '#description' => $this->t('Entrez le message de salutation ! (20carractères max)'),
