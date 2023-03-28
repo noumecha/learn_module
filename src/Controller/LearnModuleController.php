@@ -19,8 +19,10 @@ class LearnModuleController extends ControllerBase
      */
     protected $firstService;
 
-    # we can use service by statically method :
-    # $service = \Drupal::service('module_name.service_name');
+    /**
+     * @var \Drupal\learn_module\LearnModuleAuthorService
+     */
+    protected $authorService;
 
     /**
      * learnModuleController constructor.
@@ -55,16 +57,16 @@ class LearnModuleController extends ControllerBase
      * {@inheritdoc}
      */
     public function test() {
-        dump($user);
-        $t = "hello, dear user ";
         return [
-            "#markup" => "<h2>".$t."</h2>"
+            "#markup" => "<h2> hello, dear Drupal User </h2>"
         ];
     }
     /**
      * {@inheritdoc}
      */
-    public function test_one(AccountInterface $user) {
-        dump($user);
+    public function routeParameters() {
+        return [
+            "#markup" => "<p> #ze route with parameters </p>"
+        ];
     }
 }

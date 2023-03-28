@@ -19,14 +19,10 @@ learn_module.test:
     _title: 'Just testing the route'
   requirements:
     _permission: 'access content'
-learn_module.test_one:
-  path: '/test_one/{user}'
+learn_module.parameters:
+  path: '/parameters'
   defaults:
-    _controller: Drupal\learn_module\Controller\LearnModuleController::test
-    _title: 'The route with parameter'
+    _controller: Drupal\learn_module\Controller\LearnModuleController::routeParameters
+    _title: 'Route parameters'
   requirements:
     _permission: 'access content'
-  options:
-    parameters:
-      user:
-        type: entity:user
