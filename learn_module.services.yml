@@ -1,7 +1,7 @@
 services:
   learn_module.salutation:
     class: Drupal\learn_module\LearnModuleFirstService
-    arguments: ['@config.factory', '@event_dispatcher']
+    #arguments: ['@config.factory', '@event_dispatcher']
     tags:
       - { name: tag_name }
   learn_module.author:
@@ -10,12 +10,12 @@ services:
       - { name: tag_name }
   learn_module.redirect_subscriber:
     class: Drupal\learn_module\EventSubscriber\LearnModuleRedirectSubscriber
-    arguments: ['@current_user', '@current_route_match']
+    arguments: ["@current_user", "@current_route_match"]
     tags:
       - { name: event_subscriber }
   learn_module.logger.channel.learn_module:
     parent: logger.channel_base
-    arguments: ['learn_module']
+    arguments: ["learn_module"]
   learn_module.logger.mail_logger:
     class: Drupal\learn_module\Logger\MailLogger
     tags:

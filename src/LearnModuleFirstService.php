@@ -15,13 +15,13 @@ class LearnModuleFirstService
     /**
      * @var \Drupal\Core\Config\ConfigFactoryInterface
      */
-    protected $configFactory;
+    //protected $configFactory;
 
     /**
      * @var \Sympfony\Component\EventDispatcher\EventDispatcherInterface
      */
 
-    protected $eventDispatcher;
+    //protected $eventDispatcher;
 
     /**
      * LearnModuleFirstService constructor
@@ -30,11 +30,11 @@ class LearnModuleFirstService
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
      */
 
-    public function __construct(ConfigFactoryInterface $config_factory, EventDispatcherInterface $eventDispatcher)
+    /*public function __construct(ConfigFactoryInterface $config_factory, EventDispatcherInterface $eventDispatcher)
     {
         $this->configFactory = $config_factory;
         $this->eventDispatcher = $eventDispatcher;
-    }
+    }*/
 
     /**
      * Returns the salutation
@@ -42,10 +42,10 @@ class LearnModuleFirstService
     public function getSalutation() {
         $time = new \DateTime();
         $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-        $config = $this->configFactory->get('learn_module.settings');
-        $salutation = $config->get('salutation');
+        //$config = $this->configFactory->get('learn_module.settings');
+        //$salutation = $config->get('salutation');
         //dump($config);
-        if ($salutation !== " " && $salutation )
+        /*if ($salutation !== " " && $salutation )
         {
             if ((int) $time->format('G') >= 00 && (int) $time->format('G') < 12) {
                 return $this->t('<center> '.$salutation.' dear '.$user->get('name')->value.' we are at morning </center>');
@@ -58,8 +58,8 @@ class LearnModuleFirstService
             if ((int) $time->format('G') >= 18) {
                 return $this->t('<center> '.$salutation.' dear '.$user->get('name')->value.' we are at evening </center>');
             }
-        }
-        /*/ morning
+        }*/
+        // morning
         if ((int) $time->format('G') >= 00 && (int) $time->format('G') < 12) {
             return $this->t('<center> Good morning dear '.$user->get('name')->value.'</center>');
         }
@@ -70,6 +70,6 @@ class LearnModuleFirstService
         // evening
         if ((int) $time->format('G') >= 18) {
             return $this->t('<center> Good evening dear '.$user->get('name')->value.'</center>');
-        }*/
+        }
     }
 }

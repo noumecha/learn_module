@@ -15,7 +15,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
      */
     protected function getEditableConfigNames()
     {
-        return ['learn_module.settings'];
+        return ['learn_module.custom_salutation'];
     }
     /**
      * {@inheritdoc}
@@ -31,8 +31,8 @@ class SalutationConfigurationForm extends ConfigFormBase {
      */
     public function buildForm(array $form, FormStateInterface $form_state)
     {
-        $config = $this->config('learn_module.settings');
-        dump($config);
+        $config = $this->config('learn_module.custom_salutation');
+        #dump($config);
         $form['salutation'] = array(
             '#type' => 'textfield',
             '#description' => $this->t('Entrez le message de salutation ! (20carractères max)'),
@@ -50,7 +50,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
      * save it & show successfull message to the user
      */
     public function submitForm(array &$form, FormStateInterface $form_state) {
-        $this->config('learn_module.settings')
+        $this->config('learn_module.custom_salutation')
             ->set('salutation', $form_state->get('salutation'))
             ->save();
         parent::submitForm($form, $form_state);
