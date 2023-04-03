@@ -1,28 +1,28 @@
 learn_module.hello:
-  path: '/learn_module'
+  path: "/learn_module"
   defaults:
     _controller: Drupal\learn_module\Controller\LearnModuleController::learnModule
-    _title: 'My first Drupal Route'
+    _title: "My first Drupal Route"
   requirements:
-    _permission: 'access content'
+    _permission: "access content"
 learn_module.greeting_message:
-  path: '/admin/config/salutation-configuration'
+  path: "/admin/config/salutation-configuration"
   defaults:
     _form: Drupal\learn_module\Form\SalutationConfigurationForm
-    _title: 'Save your greating message'
+    _title: "Save your greating message"
   requirements:
-    _permission: 'administer site configuration'
+    _permission: "administer site configuration"
 learn_module.test:
-  path: '/test'
+  path: "/test"
   defaults:
     _controller: Drupal\learn_module\Controller\LearnModuleController::test
-    _title: 'Just testing the route'
+    _title: "Just testing the route"
   requirements:
-    _permission: 'access content'
+    _permission: "access content"
 learn_module.parameters:
-  path: '/parameters'
+  path: "/parameters"
   defaults:
     _controller: Drupal\learn_module\Controller\LearnModuleController::routeParameters
-    _title: 'Route parameters'
+    _title: "Route parameters"
   requirements:
-    _permission: 'access content'
+    _permission: "access content"
