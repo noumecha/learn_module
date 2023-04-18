@@ -36,7 +36,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
             '#type' => 'textfield',
             '#description' => $this->t('Entrez le message de salutation ! (20carractères max)'),
             '#title' => $this->t('Salutation'),
-            '#default_value' => $config->get('salutation'),
+            '#default_value' => isset($config['salutation'] ) ? $config['salutation']  : '',#$config->get('salutation')
         );
         #dump($this->config);
         return parent::buildForm($form, $form_state);
