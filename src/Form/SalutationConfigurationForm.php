@@ -4,19 +4,32 @@ namespace Drupal\learn_module\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\Validator\Constraints\IsNull;
 
 /**
  * configuration form definition for the salutation message
  * for adding some great way to our first controller
  */
 class SalutationConfigurationForm extends ConfigFormBase {
+
+    /**
+     * config settings
+     *
+     * @var String
+     */
+    const SETTINGS = 'learn_module.settings';
+
     /**
      * {@inheritdoc}
      */
     protected function getEditableConfigNames()
     {
-        return ['learn_module.custom_salutation'];
+        return [
+            static::SETTINGS
+            #'learn_module.custom_salutation'
+        ];
     }
+
     /**
      * {@inheritdoc}
      * get the unique id for the form
@@ -31,26 +44,35 @@ class SalutationConfigurationForm extends ConfigFormBase {
      */
     public function buildForm(array $form, FormStateInterface $form_state)
     {
-        $config = $this->config('learn_module.custom_salutation');
+        #$config = $this->config('learn_module.custom_salutation');
+        $config = $this->config(static::SETTINGS);
+        //dump($config);
         $form['salutation'] = array(
             '#type' => 'textfield',
             '#description' => $this->t('Entrez le message de salutation ! (20carractères max)'),
             '#title' => $this->t('Salutation'),
-            '#default_value' => isset($config['salutation'] ) ? $config['salutation']  : '',#$config->get('salutation')
+            '#default_value' => $config->get('salutation') !== null ? $config->get('salutation')  : 'test',#$config->get('salutation')
         );
-        #dump($this->config);
+        $form['salutation_name'] = array(
+            '#type' => 'textfield',
+            '#description' => $this->t('Entrez votre nom ! (20carractères max)'),
+            '#title' => $this->t('Salutation Name'),
+            '#default_value' => $config->get('salutation_name') !== null ? $config->get('salutation_name')  : 'noumel',
+        );
         return parent::buildForm($form, $form_state);
     }
 
     /**
      * {@inheritdoc}
-     * this is for sumbittins the form after be fill
+     * this is for submiting the form after be fill
      * his work is to get the value in the field
      * save it & show successfull message to the user
      */
     public function submitForm(array &$form, FormStateInterface $form_state) {
-        $this->config('learn_module.custom_salutation')
+        #$this->config('learn_module.custom_salutation')
+        $this->config(static::SETTINGS)
             ->set('salutation', $form_state->get('salutation'))
+            ->set('salutation_name', $form_state->get('salutation_name'))
             ->save();
         parent::submitForm($form, $form_state);
     }
@@ -64,6 +86,10 @@ class SalutationConfigurationForm extends ConfigFormBase {
         $salutation = $form_state->getValue('salutation');
         if (strlen($salutation) > 20) {
             $form_state->setErrorByName('salutation', $this->t('Le message de salutation est trop long !'));
+        }
+        if (strlen($form_state->getValue('salutation_name')) > 26 )
+        {
+            $form_state->setErrorByName('salutation_name', $this->t('Votre nom est trop long'));
         }
     }
 }
