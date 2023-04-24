@@ -2,6 +2,7 @@ name: learn_module
 description: custom module for learning purpose
 type: module
 core_version_requirement: ^8 || ^9 || ^10
+configure : learn_module.custom_salutation
 package: Custom
 dependencies:
   - drupal:views

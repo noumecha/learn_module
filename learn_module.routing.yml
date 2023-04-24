@@ -5,7 +5,7 @@ learn_module.hello:
     _title: "My first Drupal Route"
   requirements:
     _permission: "access content"
-learn_module.settings:
+learn_module.custom_salutation:
   path: "/admin/config/salutation-configuration"
   defaults:
     _form: Drupal\learn_module\Form\SalutationConfigurationForm
