@@ -34,9 +34,13 @@ class LearnModuleFirstService
         $time = new \DateTime();
         $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
         $config = $this->configFactory->get('learn_module.custom_salutation');
+        $salutation = $config->get('salutation');
         #dump($config);
+        if (isset($salutation)) {
+            return $salutation;
+        }
         if ((int) $time->format('G') >= 00 && (int) $time->format('G') < 12) {
-            return $this->t('<center> Good morning dear '.$user->get('name')->value.'</center>');
+            return $this->t('<center>'.$salutation.' dear '.$user->get('name')->value.'</center>');
         }
         // afternoon
         if ((int) $time->format('G') > 12 && (int) $time->format('G') < 18) {

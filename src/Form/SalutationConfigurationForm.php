@@ -59,6 +59,12 @@ class SalutationConfigurationForm extends ConfigFormBase {
             '#title' => $this->t('Salutation Name'),
             '#default_value' => $config->get('salutation_name') !== null ? $config->get('salutation_name')  : 'noumel',
         );
+        $form['salutation_id'] = array(
+            '#type' => 'number',
+            '#description' => $this->t('Entrez l\id'),
+            '#title' => $this->t('Salutation Id'),
+            '#default_value' => $config->get('salutation_id') !== null ? $config->get('salutation_id')  : rand(10,1000),
+        );
         return parent::buildForm($form, $form_state);
     }
 
@@ -73,6 +79,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
         #$this->config(static::SETTINGS)
             ->set('salutation', $form_state->get('salutation'))
             ->set('salutation_name', $form_state->get('salutation_name'))
+            ->set('salutation_id', $form_state->get('salutation_id'))
             ->save();
         parent::submitForm($form, $form_state);
     }
