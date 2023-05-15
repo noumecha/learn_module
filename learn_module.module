@@ -32,4 +32,6 @@ function learn_module_form_salutation_configuration_form_alter(&$form, \Drupal\C
 {
 	//dump($form);
 	$form['salutation']["#description"] = 'Entrez le message (20 car max)';
+	// define a custom when submit :
+	//$form['#submit'][] = 'learn_module_salutation_configuration_form_submit_handler';
 }

@@ -45,7 +45,6 @@ class SalutationConfigurationForm extends ConfigFormBase {
     public function buildForm(array $form, FormStateInterface $form_state)
     {
         $config = $this->config('learn_module.custom_salutation');
-        #$config = $this->config(static::SETTINGS);
         #dump($config);
         $form['salutation'] = array(
             '#type' => 'textfield',
@@ -61,7 +60,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
         );
         $form['salutation_id'] = array(
             '#type' => 'number',
-            '#description' => $this->t('Entrez l\id'),
+            '#description' => $this->t('Entrez l\'id'),
             '#title' => $this->t('Salutation Id'),
             '#default_value' => $config->get('salutation_id') !== null ? $config->get('salutation_id')  : rand(10,1000),
         );
@@ -76,12 +75,11 @@ class SalutationConfigurationForm extends ConfigFormBase {
      */
     public function submitForm(array &$form, FormStateInterface $form_state) {
         $this->config('learn_module.custom_salutation')
-        #$this->config(static::SETTINGS)
             ->set('salutation', $form_state->get('salutation'))
             ->set('salutation_name', $form_state->get('salutation_name'))
             ->set('salutation_id', $form_state->get('salutation_id'))
             ->save();
-        parent::submitForm($form, $form_state);
+        //parent::submitForm($form, $form_state);
     }
 
     /**

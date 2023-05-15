@@ -1,6 +1,7 @@
 name: learn_module
 description: custom module for learning purpose
 type: module
+version: "1.0"
 core_version_requirement: ^8 || ^9 || ^10
 configure : learn_module.custom_salutation
 package: Custom

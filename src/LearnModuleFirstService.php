@@ -35,7 +35,7 @@ class LearnModuleFirstService
         $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
         $config = $this->configFactory->get('learn_module.custom_salutation');
         $salutation = $config->get('salutation');
-        #dump($config);
+        dump($config->get('salutation'));
         if (isset($salutation)) {
             return $salutation;
         }
