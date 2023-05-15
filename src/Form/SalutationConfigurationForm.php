@@ -4,7 +4,6 @@ namespace Drupal\learn_module\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\Validator\Constraints\IsNull;
 
 /**
  * configuration form definition for the salutation message
@@ -79,7 +78,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
             ->set('salutation_name', $form_state->get('salutation_name'))
             ->set('salutation_id', $form_state->get('salutation_id'))
             ->save();
-        //parent::submitForm($form, $form_state);
+        parent::submitForm($form, $form_state);
     }
 
     /**
