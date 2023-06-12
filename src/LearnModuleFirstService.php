@@ -33,9 +33,9 @@ class LearnModuleFirstService
     public function getSalutation() {
         $time = new \DateTime();
         $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-        $config = $this->configFactory->get('learn_module.custom_salutation');
+        $config = $this->configFactory->get('learn_module.settings');
         $salutation = $config->get('salutation');
-        dump($config->get('salutation'));
+        //dump($this->configFactory->get('learn_module.settings'));
         if (isset($salutation)) {
             return $salutation;
         }
