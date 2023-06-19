@@ -1,25 +1,26 @@
-<?php 
+<?php
 
 namespace Drupal\learn_module;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Config\ConfigFactoryInterface;
 
-class LearnModuleAuthorService {
+class LearnModuleAuthorService
+{
     use StringTranslationTrait;
     /**
      * {@inheritdoc}
      * defined class porperties
      */
-    protected $author = "TmcK0d€r";
+    protected $author = "#Ze Navigator";
     /**
      * @var \Drupal\Core\Config\ConfigFactoryInterface
      */
     //protected $configFactory;
-    
+
     /**
      * LearnModuleFirstService constructor
-     * 
+     *
      * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
      */
 
@@ -27,8 +28,9 @@ class LearnModuleAuthorService {
     {
         $this->configFactory = $config_factory;
     }*/
-    
-    public function getName() {
+
+    public function getName()
+    {
         return $this->author;
     }
 }

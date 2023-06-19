@@ -29,14 +29,16 @@ class LearnModuleController extends ControllerBase
      *
      * @param \Drupal\learn_module\LearnModuleFirstService $firstService
      */
-    public function __construct(LearnModuleFirstService $firstService) {
+    public function __construct(LearnModuleFirstService $firstService)
+    {
         $this->firstService = $firstService;
     }
     /**
      * {@inheritdoc}
      * get the service via the create() method
      */
-    public static function create(ContainerInterface $container) {
+    public static function create(ContainerInterface $container)
+    {
         return new static(
             $container->get('learn_module.salutation')
         );
@@ -51,12 +53,14 @@ class LearnModuleController extends ControllerBase
     {
         return [
             '#markup' => $this->firstService->getSalutation(),
+            dump($this->$authorService)
         ];
     }
     /**
      * {@inheritdoc}
      */
-    public function test() {
+    public function test()
+    {
         return [
             "#markup" => "<h2> hello, dear Drupal User </h2>"
         ];
@@ -64,7 +68,8 @@ class LearnModuleController extends ControllerBase
     /**
      * {@inheritdoc}
      */
-    public function routeParameters() {
+    public function routeParameters()
+    {
         return [
             "#markup" => "<p> #ze route with parameters </p>"
         ];

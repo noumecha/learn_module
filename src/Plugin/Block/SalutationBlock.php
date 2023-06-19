@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Drupal\learn_module\Plugin\Block;
 
@@ -9,24 +9,24 @@ use Drupal\learn_module\LearnModuleAuthorService;
 
 /**
  * learn module salutation block.
- * 
+ *
  * @Block(
  *  id = "learn_module_salutation_block",
  *  admin_label = @Translation("learn module salutation"),
  * )
  */
 
-class SalutationBlock extends BlockBase implements ContainerFactoryPluginInterface 
+class SalutationBlock extends BlockBase implements ContainerFactoryPluginInterface
 {
     /**
-     * 
+     *
      * use the salutation service
-     * 
+     *
      * @var \Drupal\learn_module\LearnModuleAuthorService
      */
     protected $author;
     /**
-     * 
+     *
      * get salutation service from injection
      */
     public function __construct(array $configuration, $plugin_id, $plugin_defintion, LearnModuleAuthorService $author)
@@ -52,13 +52,11 @@ class SalutationBlock extends BlockBase implements ContainerFactoryPluginInterfa
     /**
      * {@inheritdoc}
      */
-    public function build() 
+    public function build()
     {
         return [
-            //dump($this->salutation->getSalutation()),
-            '#markup' => '<code>'.$this->author->getName().'</code>',
+            dump($this->author),
+            '#markup' => '<code>' . $this->author->getName() . '</code>',
         ];
     }
-     
-
 }
