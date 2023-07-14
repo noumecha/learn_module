@@ -55,7 +55,7 @@ class SalutationBlock extends BlockBase implements ContainerFactoryPluginInterfa
     public function build()
     {
         return [
-            dump($this->author),
+            //dump($this->author),
             '#markup' => '<code>' . $this->author->getName() . '</code>',
         ];
     }

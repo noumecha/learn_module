@@ -4,7 +4,7 @@
 namespace Drupal\learn_module\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\learn_module\LearnModuleFirstService;
+use Drupal\learn_module\LearnModuleSalutationService;
 use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -15,9 +15,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class LearnModuleController extends ControllerBase
 {
     /**
-     * @var \Drupal\learn_module\LearnModuleFirstService
+     * @var \Drupal\learn_module\LearnModuleSalutationService
      */
-    protected $firstService;
+    protected $salutation;
 
     /**
      * @var \Drupal\learn_module\LearnModuleAuthorService
@@ -27,11 +27,11 @@ class LearnModuleController extends ControllerBase
     /**
      * learnModuleController constructor.
      *
-     * @param \Drupal\learn_module\LearnModuleFirstService $firstService
+     * @param \Drupal\learn_module\LearnModuleSalutationService $salutation
      */
-    public function __construct(LearnModuleFirstService $firstService)
+    public function __construct(LearnModuleSalutationService $salutation)
     {
-        $this->firstService = $firstService;
+        $this->salutation = $salutation;
     }
     /**
      * {@inheritdoc}
@@ -52,8 +52,7 @@ class LearnModuleController extends ControllerBase
     public function learnModule()
     {
         return [
-            '#markup' => $this->firstService->getSalutation(),
-            dump($this->$authorService)
+            '#markup' => $this->salutation->showSalutation(),
         ];
     }
     /**

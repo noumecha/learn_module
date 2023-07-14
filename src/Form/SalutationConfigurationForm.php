@@ -17,7 +17,6 @@ class SalutationConfigurationForm extends ConfigFormBase {
     protected function getEditableConfigNames()
     {
         return [
-            #static::SETTINGS
             'learn_module.settings'
         ];
     }
@@ -43,18 +42,6 @@ class SalutationConfigurationForm extends ConfigFormBase {
             '#title' => $this->t('Salutation'),
             '#default_value' => $config->get('learn_module.salutation') !== null ? $config->get('learn_module.salutation')  : 'test',
         );
-        $form['salutation_name'] = array(
-            '#type' => 'textfield',
-            '#description' => $this->t('Entrez votre nom ! (20carractères max)'),
-            '#title' => $this->t('Salutation Name'),
-            '#default_value' => $config->get('learn_module.salutation_name') !== null ? $config->get('learn_module.salutation_name')  : 'noumel',
-        );
-        $form['salutation_id'] = array(
-            '#type' => 'number',
-            '#description' => $this->t('Entrez l\'id'),
-            '#title' => $this->t('Salutation Id'),
-            '#default_value' => $config->get('learn_module.salutation_id') !== null ? $config->get('learn_module.salutation_id')  : rand(10,1000),
-        );
         //dump($config);
         return parent::buildForm($form, $form_state);
     }
@@ -67,9 +54,7 @@ class SalutationConfigurationForm extends ConfigFormBase {
      */
     public function submitForm(array &$form, FormStateInterface $form_state) {
         $this->config('learn_module.settings')
-            ->set('salutation', $form_state->get('learn_module.salutation'))
-            ->set('salutation_name', $form_state->get('learn_module.salutation_name'))
-            ->set('salutation_id', $form_state->get('learn_module.salutation_id'))
+            ->set('salutation', $form_state->getValue('salutation'))
             ->save();
         parent::submitForm($form, $form_state);
     }
@@ -83,12 +68,5 @@ class SalutationConfigurationForm extends ConfigFormBase {
         $salutation = $form_state->getValue('salutation');
         if (strlen($salutation) > 20)
             $form_state->setErrorByName('salutation', $this->t('Le message de salutation est trop long !'));
-        if (strlen($salutation) < 4)
-            $form_state->setErrorByName('salutation', $this->t('Le message de salutation est trop court (4 carractère minimum) !'));
-        if (strlen($form_state->getValue('salutation_name')) > 26)
-            $form_state->setErrorByName('salutation_name', $this->t('Votre nom est trop long !'));
-        if (strlen($form_state->getValue('salutation_name')) < 3)
-            $form_state->setErrorByName('salutation_name', $this->t('Votre nom est trop court (3 carractère minimum)!'));
-
     }
 }
