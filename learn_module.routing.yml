@@ -9,7 +9,7 @@ learn_module.config_salutation:
   path: "/admin/config/salutation-configuration"
   defaults:
     _form: Drupal\learn_module\Form\SalutationConfigurationForm
-    _title: "Save your greating message"
+    _title: "Set the greeting message"
   requirements:
     _permission: "administer site configuration"
 learn_module.test:
