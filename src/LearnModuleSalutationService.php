@@ -29,12 +29,15 @@ class LearnModuleSalutationService {
      * returns the salutation
      */
     public function showSalutation() {
+        // get the config message from the configuration form
         $config = $this->configFactory->get('learn_module.custom_salutation');
         $msg = $config->get('message');
+
         //dump($msg);
         if ($msg == "") {
             $msg = "hello";
         }
+
         $time = new \DateTime();
         if ((int) $time->format('G') >= 00 && (int) $time->format('G') < 12) {
             return $this->t('<h2><b>'.$msg.' now is morning</b></h2>');

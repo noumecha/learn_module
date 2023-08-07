@@ -11,8 +11,8 @@ use Drupal\learn_module\LearnModuleSalutationService;
  * Learn module Salutation Block
  *
  * @Block(
- *  id = "learn_module_salutation_block",
- *  admin_label = @Translation("Learn Module Salutation"),
+ *  id = "service_salutation_block",
+ *  admin_label = @Translation("Service Salutation Block"),
  * )
  */
 class LearnModuleSalutationBlock extends BlockBase implements ContainerFactoryPluginInterface {
@@ -47,7 +47,8 @@ class LearnModuleSalutationBlock extends BlockBase implements ContainerFactoryPl
      */
     public function build() {
         return [
-            '#markup' => $this->salutation->showSalutation(),
+            //'#markup' => $this->salutation->showSalutation(),
+            '#markup' => 'there the salutation greeting',
         ];
     }
 
