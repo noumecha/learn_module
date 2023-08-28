@@ -29,9 +29,9 @@ class SalutationBlock extends BlockBase implements ContainerFactoryPluginInterfa
      *
      * get salutation service from injection
      */
-    public function __construct(array $configuration, $plugin_id, $plugin_defintion, LearnModuleAuthorService $author)
+    public function __construct(array $configuration, $plugin_id, $plugin_definition, LearnModuleAuthorService $author)
     {
-        parent::__construct($configuration, $plugin_id, $plugin_defintion);
+        parent::__construct($configuration, $plugin_id, $plugin_definition);
         $this->author = $author;
     }
 
@@ -56,7 +56,7 @@ class SalutationBlock extends BlockBase implements ContainerFactoryPluginInterfa
     {
         return [
             //dump($this->author),
-            '#markup' => '<code>' . $this->author->getName() . '</code>',
+            '#markup' => '<h4>' . $this->author->getName() . '</h4>',
         ];
     }
 }

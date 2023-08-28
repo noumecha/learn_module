@@ -8,32 +8,34 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\learn_module\LearnModuleSalutationService;
 
 /**
- * Learn module Salutation Block
+ * Greeting block
  *
- * @Block(
- *  id = "service_salutation_block",
- *  admin_label = @Translation("Service Salutation Block"),
+ * @Block (
+ *  id = "greeting block",
+ *  admin_label = @Translation("greeting block")
  * )
  */
-class LearnModuleSalutationBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
+class GreetingBlock extends BlockBase implements ContainerFactoryPluginInterface {
     /**
-     * The salutation service
+     * the salutation service
      * @var \Drupal\learn_module\LearnModuleSalutationService
      */
     protected $salutation;
 
     /**
-     * Constructs a LearnModuleSalutationBlock.
+     * construct the greeting block
      */
-    public function __construct(array $configuration, $plugin_id, $plugin_definition, LearnModuleSalutationService $salutation) {
+    public function __construct(array $configuration, $plugin_id, $plugin_definition, LearnModuleSalutationService $salutation )
+    {
         parent::__construct($configuration, $plugin_id, $plugin_definition);
         $this->salutation = $salutation;
     }
-
     /**
      * {@inheritdoc}
      */
-    public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition)
+    {
         return new static(
             $configuration,
             $plugin_id,
@@ -41,15 +43,12 @@ class LearnModuleSalutationBlock extends BlockBase implements ContainerFactoryPl
             $container->get('learn_module.salutation')
         );
     }
-
     /**
      * {@inheritdoc}
      */
     public function build() {
         return [
-            //'#markup' => $this->salutation->showSalutation(),
-            '#markup' => 'there the salutation greeting',
+            '#markup' => 'greeting block',
         ];
     }
-
 }
